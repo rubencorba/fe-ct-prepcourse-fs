@@ -119,21 +119,30 @@ function sortArray(arrayOfStrings) {
    // [EJEMPLO]: ["You", "are", "beautiful", "looking"]  ---> [“You", "are", "looking", "beautiful"]
    // Tu código:
    let newArray=[];
+   let newArray2= [];
+
+   for (let i=0;i<arrayOfStrings.length;i++){
+      newArray[i]=arrayOfStrings[i].split("");
+   }   
 
    
    for (let i=0;i<arrayOfStrings.length;i++){
       let menor=1000;
-      for(let j=0;j<arrayOfStrings.length;j++){
-         if(arrayOfStrings[j].split("").length<menor){
-            menor=arrayOfStrings[j].split("").length;
-            var g=j;
+      for(let j=i;j<newArray.length;j++){
+         if (newArray[j].length<menor){
+            menor=newArray[j].length;
+            let aux=newArray[j];
+            newArray[j]=newArray[i];
+            newArray[i]=aux;
          }
 
       }
-      newArray.push(arrayOfStrings[g]);
-      delete(arrayOfStrings[g]);
    }
-   return newArray;
+   for (let i=0;i<arrayOfStrings.length;i++){
+      newArray2[i]=newArray[i].join("");
+   }   
+
+   return newArray2;
 }
 
 function buscoInterseccion(array1, array2) {
@@ -143,6 +152,15 @@ function buscoInterseccion(array1, array2) {
    // Si no tienen elementos en común, retornar un arreglo vacío.
    // [PISTA]: los arreglos no necesariamente tienen la misma longitud.
    // Tu código:
+   let novoArray= [];
+   for (let i=0;i<array1.length;i++){
+      for (let j=0;j<array2.length;j++){
+         if (array1[i]==array2[j]){
+            novoArray.push(array1[i]);
+         }
+      }
+   }
+   return novoArray;
 }
 
 /*⚠️ NO MODIFIQUES NADA DEBAJO DE ESTO ⚠️*/
